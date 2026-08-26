@@ -2,9 +2,9 @@ name: Security
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
   schedule:
     # Weekly full scan — catch newly published CVEs
     - cron: "0 3 * * 1"
@@ -18,6 +18,8 @@ jobs:
   gitleaks:
     name: Gitleaks — Secret Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,6 +34,9 @@ jobs:
   trivy-fs:
     name: Trivy — Filesystem Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write  # required to upload SARIF to GitHub Security tab
     steps:
       - uses: actions/checkout@v4
 
