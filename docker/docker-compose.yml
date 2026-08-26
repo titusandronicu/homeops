@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: homeops
+      POSTGRES_USER: homeops
+      POSTGRES_PASSWORD: homeops
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U homeops"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # web service placeholder — replaced with real image in Session 4
+  # web:
+  #   build: ../apps/web
+  #   ports:
+  #     - "4321:4321"
+  #   environment:
+  #     DATABASE_URL: postgresql://homeops:homeops@postgres:5432/homeops
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+
+volumes:
+  postgres_data:

@@ -1,0 +1,17 @@
+{
+  "name": "homeops",
+  "private": true,
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build":     "echo 'No packages to build yet — add in Session 4'",
+    "typecheck": "echo 'No packages to typecheck yet — add in Session 2'",
+    "lint":      "echo 'No packages to lint yet — add in Session 2'",
+    "test":      "echo 'No tests yet — add in Session 2'",
+    "db:generate": "pnpm --filter=@homeops/db db:generate",
+    "db:migrate":  "pnpm --filter=@homeops/db db:migrate"
+  }
+}

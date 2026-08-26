@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[[rules.allowlists]]
+description = "Ignore .env.example placeholder values"
+paths = ["\\.env\\.example$"]
